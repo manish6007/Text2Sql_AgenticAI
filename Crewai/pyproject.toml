@@ -1,0 +1,23 @@
+[project]
+name = "text2sql"
+version = "0.1.0"
+description = "text2sql using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.105.0,<1.0.0"
+]
+
+[project.scripts]
+text2sql = "text2sql.main:run"
+run_crew = "text2sql.main:run"
+train = "text2sql.main:train"
+replay = "text2sql.main:replay"
+test = "text2sql.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"

@@ -1,0 +1,900 @@
+## Tool Output:
+{'success': True, 'data': [['1001', '1', '2023-01-15', '150.5', 'Shipped'], ['1002', '2', '2023-02-20', '250.0', 'Processing'], ['1003', '1', '2023-03-10', '300.75', 'Delivered'], ['1004', '3', '2023-04-05', '75.25', 'Cancelled'], ['1005', '4', '2023-05-25', '500.0', 'Shipped']]}
+ 
+[2025-03-22 15:09:51][🤖 LLM CALL STARTED]: 2025-03-22 15:09:51.252184
+ 
+[2025-03-22 15:09:52][✅ LLM CALL COMPLETED]: 2025-03-22 15:09:52.980355
+ 
+[2025-03-22 15:09:52][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:09:52.980355
+ 
+[2025-03-22 15:09:55][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:09:55.908209
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SELECT * FROM athena_db.order_items LIMIT 10;\"}"
+## Tool Output:
+{'success': True, 'data': [['1', '1001', '101', '2', '25.0'], ['2', '1001', '102', '1', '50.0'], ['3', '1002', '103', '3', '75.0'], ['4', '1003', '101', '1', '25.0'], ['5', '1003', '104', '2', '100.0'], ['6', '1004', '105', '1', '125.0'], ['7', '1005', '102', '4', '50.0'], ['8', '1005', '103', '2', '75.0']]}
+
+
+You ONLY have access to the following tools, and should NEVER make up tools that are not listed here:
+
+Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results.
+
+IMPORTANT: Use the following format in your response:
+
+```
+Thought: you should always think about what to do
+Action: the action to take, only one name of [ExecuteSqlQueryTool], just the name, exactly as it's written.
+Action Input: the input to the action, just a simple JSON object, enclosed in curly braces, using " to wrap keys and values.
+Observation: the result of the action
+```
+
+Once all necessary information is gathered, return the following format:
+
+```
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+```
+ 
+[2025-03-22 15:09:55][🤖 LLM CALL STARTED]: 2025-03-22 15:09:55.908209
+ 
+[2025-03-22 15:10:00][✅ LLM CALL COMPLETED]: 2025-03-22 15:10:00.301107
+ 
+[2025-03-22 15:10:00][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:10:00.301107
+ 
+[2025-03-22 15:10:05][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:10:05.512077
+ 
+[2025-03-22 15:10:10][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:10:10.758356
+ 
+[2025-03-22 15:10:16][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:10:16.651715
+
+
+I encountered an error while trying to use the tool. This was the error: TYPE_MISMATCH: line 1:215: Unknown type: STRING.
+ Tool ExecuteSqlQueryTool accepts these inputs: Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results.
+
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SELECT DISTINCT  c.firstname,  c.lastname,  c.email,  c.phonenumber,  o.orderdate,  o.orderamount,  o.orderstatus,  oi.productid,  oi.quantity,  oi.unitprice FROM  athena_db.customers c JOIN  athena_db.orders o ON CAST(c.customerid AS STRING) = CAST(o.customerid AS STRING) JOIN  athena_db.order_items oi ON CAST(o.orderid AS STRING) = CAST(oi.orderid AS STRING);\"}"
+## Tool Output:
+
+I encountered an error while trying to use the tool. This was the error: TYPE_MISMATCH: line 1:215: Unknown type: STRING.
+ Tool ExecuteSqlQueryTool accepts these inputs: Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results..
+Moving on then. I MUST either use a tool (use one at time) OR give my best final answer not both at the same time. When responding, I must use the following format:
+
+```
+Thought: you should always think about what to do
+Action: the action to take, should be one of [ExecuteSqlQueryTool]
+Action Input: the input to the action, dictionary enclosed in curly braces
+Observation: the result of the action
+```
+This Thought/Action/Action Input/Result can repeat N times. Once I know the final answer, I must return the following format:
+
+```
+Thought: I now can give a great answer
+Final Answer: Your final answer must be the great and the most complete as possible, it must be outcome described     
+
+```
+ 
+[2025-03-22 15:10:16][🤖 LLM CALL STARTED]: 2025-03-22 15:10:16.669993
+ 
+[2025-03-22 15:10:19][✅ LLM CALL COMPLETED]: 2025-03-22 15:10:19.959546
+ 
+[2025-03-22 15:10:19][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:10:19.959546
+ 
+[2025-03-22 15:10:24][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:10:24.106597
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SELECT DISTINCT  c.firstname,  c.lastname,  c.email,  c.phonenumber,  o.orderdate,  o.orderamount,  o.orderstatus,  oi.productid,  oi.quantity,  oi.unitprice FROM  athena_db.customers c JOIN  athena_db.orders o ON CAST(c.customerid AS VARCHAR) = CAST(o.customerid AS VARCHAR) JOIN  athena_db.order_items oi ON CAST(o.orderid AS VARCHAR) = CAST(oi.orderid AS VARCHAR);\"}"
+## Tool Output:
+{'success': True, 'data': [['John', 'Doe', 'johndoe@example.com', '123-456-7890', '2023-03-10', '300.75', 'Delivered', '101', '1', '25.0'], ['John', 'Doe', 'johndoe@example.com', '123-456-7890', '2023-01-15', '150.5', 'Shipped', '102', '1', '50.0'], ['Jim', 'Brown', 'jimbrown@example.com', '345-678-9012', '2023-04-05', '75.25', 'Cancelled', '105', '1', '125.0'], ['Jack', 'Johnson', 'jackjohnson@example.com', '456-789-0123', '2023-05-25', '500.0', 'Shipped', '103', '2', '75.0'], ['Jack', 'Johnson', 'jackjohnson@example.com', '456-789-0123', '2023-05-25', '500.0', 'Shipped', '102', '4', '50.0'], ['John', 'Doe', 'johndoe@example.com', '123-456-7890', '2023-03-10', '300.75', 'Delivered', '104', '2', '100.0'], ['John', 'Doe', 'johndoe@example.com', '123-456-7890', '2023-01-15', '150.5', 'Shipped', '101', '2', '25.0'], ['Jane', 'Smith', 'janesmith@example.com', '234-567-8901', '2023-02-20', '250.0', 'Processing', '103', '3', '75.0']]}  
+ 
+[2025-03-22 15:10:24][🤖 LLM CALL STARTED]: 2025-03-22 15:10:24.106597
+ 
+[2025-03-22 15:10:32][✅ LLM CALL COMPLETED]: 2025-03-22 15:10:32.640383
+
+
+# Agent: Athena SQL Executor
+## Final Answer:
+[
+    ['John', 'Doe', 'johndoe@example.com', '123-456-7890', '2023-03-10', '300.75', 'Delivered', '101', '1', '25.0'],  
+    ['John', 'Doe', 'johndoe@example.com', '123-456-7890', '2023-01-15', '150.5', 'Shipped', '102', '1', '50.0'],     
+    ['Jim', 'Brown', 'jimbrown@example.com', '345-678-9012', '2023-04-05', '75.25', 'Cancelled', '105', '1', '125.0'],
+    ['Jack', 'Johnson', 'jackjohnson@example.com', '456-789-0123', '2023-05-25', '500.0', 'Shipped', '103', '2', '75.0'],
+    ['Jack', 'Johnson', 'jackjohnson@example.com', '456-789-0123', '2023-05-25', '500.0', 'Shipped', '102', '4', '50.0'],
+    ['John', 'Doe', 'johndoe@example.com', '123-456-7890', '2023-03-10', '300.75', 'Delivered', '104', '2', '100.0'], 
+    ['John', 'Doe', 'johndoe@example.com', '123-456-7890', '2023-01-15', '150.5', 'Shipped', '101', '2', '25.0'],     
+    ['Jane', 'Smith', 'janesmith@example.com', '234-567-8901', '2023-02-20', '250.0', 'Processing', '103', '3', '75.0']
+]
+
+
+ 
+[2025-03-22 15:10:32][✅ AGENT 'ATHENA SQL EXECUTOR
+' COMPLETED TASK]: 2025-03-22 15:10:32.642398
+ 
+[2025-03-22 15:10:32][✅ TASK COMPLETED: EXECUTE THE SQL QUERY AND RETURN THE RESULTS OR ERROR MESSAGE.
+]: 2025-03-22 15:10:32.642398
+ 
+[2025-03-22 15:10:32][✅ CREW 'CREW' COMPLETED, 6F2A3AEC-A44A-4A8A-9D51-080DC27A9F79]: 2025-03-22 15:10:32.647949     
+
+(D:\AgenticAI\AgenticAIWorkflow\venv) C:\ai\text2sql\src\text2sql>python main.py
+ 
+[2025-03-22 15:12:00][🚀 CREW 'CREW' STARTED, 9730E801-E52E-43DC-9C97-DC4AF293A713]: 2025-03-22 15:12:00.457973       
+ 
+[2025-03-22 15:12:00][📋 TASK STARTED: - EXECUTE EXPLORATORY SCHEMA QUERIES ('SHOW TABLES' AND 'DESCRIBE TABLE') ON ATHENA BASED ON <USER_QUERY>TELL ME THE PRODUCT NAME, CATEGORY, PRICE AND STOCKQUANTITY OF PRODUCTS FOR WHICH THE ORDERS WERE PLACED ALONG WITH CUSTOMER NAME WHO PLACED THOSE ORDERS? CONCATE FIRST NAME AND LAST NAME TO FORM CUSTOMER NAME?</USER_QUERY>. RETURN ONLY THE EXACT TABLE NAMES AND COLUMN NAMES AS PROVIDED BY ATHENA. DO NOT MODIFY OR ASSUME ANY TABLE OR COLUMN NAMES. FOR INSTANCE, IF THE COLUMN NAME PROVIDED BY ATHENA IS 'CUSTOMERID', RETURN IT EXACTLY AS 'CUSTOMERID', NOT 'CUSTOMER_ID'. - USE THE FOLLOWING YAML TO IDENTIFY THE JOIN CONDITIONS:
+TABLES:
+  - NAME: CUSTOMERS
+    JOINING_CONDITION:
+      TABLE: ORDERS
+      ON: "CUSTOMERS.CUSTOMERID = ORDERS.CUSTOMERID"
+    FILTERS: []
+
+  - NAME: ORDERS
+    JOINING_CONDITION:
+      TABLE: ORDER_ITEMS
+      ON: "ORDERS.ORDERID = ORDER_ITEMS.ORDERID"
+    FILTERS: []
+
+  - NAME: PRODUCTS
+    JOINING_CONDITION:
+      TABLE: ORDER_ITEMS
+      ON: "PRODUCTS.PRODUCTID = ORDER_ITEMS.PRODUCTID"
+    FILTERS: []
+
+  - NAME: ORDER_ITEMS
+    JOINING_CONDITION:
+      TABLE: ORDERS
+      ON: "ORDER_ITEMS.ORDERID = ORDERS.ORDERID"
+    FILTERS: []
+
+  - REVENUE: "ORDER_ITEMS.UNIT_PRICE * ORDER_ITEMS.QUANTITY"
+
+  - CUSTOMERNAME: "CUSTOMERS.FIRSTNAME + ' ' + CUSTOMERS.LASTNAME"
+]: 2025-03-22 15:12:00.470285
+ 
+[2025-03-22 15:12:00][🤖 AGENT 'ATHENA CONTEXT RETRIEVER
+' STARTED TASK]: 2025-03-22 15:12:00.473286
+# Agent: Athena Context Retriever
+## Task: - Execute exploratory schema queries ('SHOW TABLES' and 'DESCRIBE TABLE') on Athena based on <user_query>tell me the product name, category, price and StockQuantity of products for which the orders were placed along with customer name who placed those orders? concate first name and last name to form customer name?</user_query>. Return only the exact table names and column names as provided by Athena. Do not modify or assume any table or column names. For instance, if the column name provided by Athena is 'customerid', return it exactly as 'customerid', not 'customer_id'. - Use the following yaml to identify the join conditions:
+tables:
+  - name: customers
+    joining_condition:
+      table: orders
+      on: "customers.CustomerID = orders.CustomerID"
+    filters: []
+
+  - name: orders
+    joining_condition:
+      table: order_items
+      on: "orders.OrderID = order_items.OrderID"
+    filters: []
+
+  - name: products
+    joining_condition:
+      table: order_items
+      on: "products.ProductID = order_items.ProductID"
+    filters: []
+
+  - name: order_items
+    joining_condition:
+      table: orders
+      on: "order_items.OrderID = orders.OrderID"
+    filters: []
+
+  - revenue: "order_items.unit_price * order_items.quantity"
+
+  - customername: "customers.firstname + ' ' + customers.lastname"
+
+ 
+[2025-03-22 15:12:00][🤖 LLM CALL STARTED]: 2025-03-22 15:12:00.475297
+ 
+[2025-03-22 15:12:02][✅ LLM CALL COMPLETED]: 2025-03-22 15:12:02.876827
+ 
+[2025-03-22 15:12:02][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:02.877826
+ 
+[2025-03-22 15:12:05][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:05.148765
+
+
+# Agent: Athena Context Retriever
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SHOW TABLES\"}"
+## Tool Output:
+{'success': True, 'data': [['customers'], ['order_items'], ['orders'], ['products']]}
+ 
+[2025-03-22 15:12:05][🤖 LLM CALL STARTED]: 2025-03-22 15:12:05.150771
+ 
+[2025-03-22 15:12:06][✅ LLM CALL COMPLETED]: 2025-03-22 15:12:06.936424
+ 
+[2025-03-22 15:12:06][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:06.938426
+ 
+[2025-03-22 15:12:11][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:11.104897
+
+
+# Agent: Athena Context Retriever
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"DESCRIBE customers\"}"
+## Tool Output:
+{'success': True, 'data': [['firstname           \tstring              \tfrom deserializer   '], ['lastname           
+ \tstring              \tfrom deserializer   '], ['email               \tstring              \tfrom deserializer   '], ['phonenumber         \tstring              \tfrom deserializer   ']]}
+ 
+[2025-03-22 15:12:11][🤖 LLM CALL STARTED]: 2025-03-22 15:12:11.106412
+ 
+[2025-03-22 15:12:11][✅ LLM CALL COMPLETED]: 2025-03-22 15:12:11.936765
+ 
+[2025-03-22 15:12:11][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:11.937782
+ 
+[2025-03-22 15:12:16][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:16.137701
+
+
+# Agent: Athena Context Retriever
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"DESCRIBE orders\"}"
+## Tool Output:
+{'success': True, 'data': [['customerid          \tstring              \tfrom deserializer   '], ['orderdate          
+ \tstring              \tfrom deserializer   '], ['orderamount         \tstring              \tfrom deserializer   '], ['orderstatus         \tstring              \tfrom deserializer   ']]}
+
+
+You ONLY have access to the following tools, and should NEVER make up tools that are not listed here:
+
+Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results.
+
+IMPORTANT: Use the following format in your response:
+
+```
+Thought: you should always think about what to do
+Action: the action to take, only one name of [ExecuteSqlQueryTool], just the name, exactly as it's written.
+Action Input: the input to the action, just a simple JSON object, enclosed in curly braces, using " to wrap keys and values.
+Observation: the result of the action
+```
+
+Once all necessary information is gathered, return the following format:
+
+```
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+```
+ 
+[2025-03-22 15:12:16][🤖 LLM CALL STARTED]: 2025-03-22 15:12:16.141622
+ 
+[2025-03-22 15:12:17][✅ LLM CALL COMPLETED]: 2025-03-22 15:12:17.333976
+ 
+[2025-03-22 15:12:17][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:17.336059
+ 
+[2025-03-22 15:12:22][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:22.320051
+
+
+# Agent: Athena Context Retriever
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"DESCRIBE order_items\"}"
+## Tool Output:
+{'success': True, 'data': [['orderid             \tstring              \tfrom deserializer   '], ['productid          
+ \tstring              \tfrom deserializer   '], ['quantity            \tstring              \tfrom deserializer   '], ['unitprice           \tstring              \tfrom deserializer   ']]}
+ 
+[2025-03-22 15:12:22][🤖 LLM CALL STARTED]: 2025-03-22 15:12:22.324075
+ 
+[2025-03-22 15:12:23][✅ LLM CALL COMPLETED]: 2025-03-22 15:12:23.187385
+ 
+[2025-03-22 15:12:23][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:23.188317
+ 
+[2025-03-22 15:12:26][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:26.840925
+
+
+# Agent: Athena Context Retriever
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"DESCRIBE products\"}"
+## Tool Output:
+{'success': True, 'data': [['productname         \tstring              \tfrom deserializer   '], ['category           
+ \tstring              \tfrom deserializer   '], ['price               \tstring              \tfrom deserializer   '], ['stockquantity       \tstring              \tfrom deserializer   ']]}
+ 
+[2025-03-22 15:12:26][🤖 LLM CALL STARTED]: 2025-03-22 15:12:26.843155
+ 
+[2025-03-22 15:12:33][✅ LLM CALL COMPLETED]: 2025-03-22 15:12:33.308358
+
+
+# Agent: Athena Context Retriever
+## Final Answer:
+{
+  "tables": [
+    {
+      "name": "customers",
+      "columns": ["firstname", "lastname", "email", "phonenumber"]
+    },
+    {
+      "name": "orders",
+      "columns": ["customerid", "orderdate", "orderamount", "orderstatus"]
+    },
+    {
+      "name": "order_items",
+      "columns": ["orderid", "productid", "quantity", "unitprice"]
+    },
+    {
+      "name": "products",
+      "columns": ["productname", "category", "price", "stockquantity"]
+    }
+  ],
+  "joins": [
+    "customers.CustomerID = orders.CustomerID",
+    "orders.OrderID = order_items.OrderID",
+    "products.ProductID = order_items.ProductID"
+  ]
+}
+
+
+ 
+[2025-03-22 15:12:33][✅ AGENT 'ATHENA CONTEXT RETRIEVER
+' COMPLETED TASK]: 2025-03-22 15:12:33.310337
+ 
+[2025-03-22 15:12:33][✅ TASK COMPLETED: - EXECUTE EXPLORATORY SCHEMA QUERIES ('SHOW TABLES' AND 'DESCRIBE TABLE') ON ATHENA BASED ON <USER_QUERY>TELL ME THE PRODUCT NAME, CATEGORY, PRICE AND STOCKQUANTITY OF PRODUCTS FOR WHICH THE ORDERS WERE PLACED ALONG WITH CUSTOMER NAME WHO PLACED THOSE ORDERS? CONCATE FIRST NAME AND LAST NAME TO FORM CUSTOMER NAME?</USER_QUERY>. RETURN ONLY THE EXACT TABLE NAMES AND COLUMN NAMES AS PROVIDED BY ATHENA. DO NOT MODIFY OR ASSUME ANY TABLE OR COLUMN NAMES. FOR INSTANCE, IF THE COLUMN NAME PROVIDED BY ATHENA IS 'CUSTOMERID', RETURN IT EXACTLY AS 'CUSTOMERID', NOT 'CUSTOMER_ID'. - USE THE FOLLOWING YAML TO IDENTIFY THE JOIN CONDITIONS:
+TABLES:
+  - NAME: CUSTOMERS
+    JOINING_CONDITION:
+      TABLE: ORDERS
+      ON: "CUSTOMERS.CUSTOMERID = ORDERS.CUSTOMERID"
+    FILTERS: []
+
+  - NAME: ORDERS
+    JOINING_CONDITION:
+      TABLE: ORDER_ITEMS
+      ON: "ORDERS.ORDERID = ORDER_ITEMS.ORDERID"
+    FILTERS: []
+
+  - NAME: PRODUCTS
+    JOINING_CONDITION:
+      TABLE: ORDER_ITEMS
+      ON: "PRODUCTS.PRODUCTID = ORDER_ITEMS.PRODUCTID"
+    FILTERS: []
+
+  - NAME: ORDER_ITEMS
+    JOINING_CONDITION:
+      TABLE: ORDERS
+      ON: "ORDER_ITEMS.ORDERID = ORDERS.ORDERID"
+    FILTERS: []
+
+  - REVENUE: "ORDER_ITEMS.UNIT_PRICE * ORDER_ITEMS.QUANTITY"
+
+  - CUSTOMERNAME: "CUSTOMERS.FIRSTNAME + ' ' + CUSTOMERS.LASTNAME"
+]: 2025-03-22 15:12:33.311340
+ 
+[2025-03-22 15:12:33][📋 TASK STARTED: GENERATE SQL QUERY FROM RETRIEVED SCHEMA CONTEXT FOR <USER_QUERY>TELL ME THE PRODUCT NAME, CATEGORY, PRICE AND STOCKQUANTITY OF PRODUCTS FOR WHICH THE ORDERS WERE PLACED ALONG WITH CUSTOMER NAME WHO PLACED THOSE ORDERS? CONCATE FIRST NAME AND LAST NAME TO FORM CUSTOMER NAME?</USER_QUERY>, HERE ARE SOME IMPORTANT RULES FOR WRITING QUERY 
+    - USE THE JOINS ONLY AND ONLY IF YOU THINK ITS REQUIRED 
+    - USE THE CTE ONLY IF YOU THINK IT IS REALLY REQUIRED.
+    - IF YOU ARE WRITING CTES THEN INCLUDE ALL THE REQUIRED COLUMNS. 
+    - USE THE ONLY FUNCTIONS COMPATIBLE WITH ATHENA. DON'T USE STRING_AGG 
+    - DURING JOIN IF COLUMN NAME ARE SAME PLEASE USE ALIAS EX LLM.CUSTOMER_ID
+    - IN QUERY PLEASE USE THE TABLE NAME AS DATABASE_NAME.TABLE_NAME EX ATHENA_DB.CUSTOMERS
+    - IT IS ALSO IMPORTANT TO RESPECT THE TYPE OF COLUMNS. 
+    - IT IS ALSO IMPORTANT TO USE THE DISTINCT IF THERE IS POSSIBILITY OF CROSS JOIN
+    - IF A COLUMN IS STRING, THE VALUE SHOULD BE ENCLOSED IN QUOTES. 
+    - FOR DATE COLUMNS COMPARING TO STRING , PLEASE CAST THE STRING INPUT.
+]: 2025-03-22 15:12:33.319336
+ 
+[2025-03-22 15:12:33][🤖 AGENT 'ATHENA SQL GENERATOR FOR TELL ME THE PRODUCT NAME, CATEGORY, PRICE AND STOCKQUANTITY OF PRODUCTS FOR WHICH THE ORDERS WERE PLACED ALONG WITH CUSTOMER NAME WHO PLACED THOSE ORDERS? CONCATE FIRST NAME AND LAST NAME TO FORM CUSTOMER NAME?
+' STARTED TASK]: 2025-03-22 15:12:33.323241
+# Agent: Athena SQL Generator for tell me the product name, category, price and StockQuantity of products for which the orders were placed along with customer name who placed those orders? concate first name and last name to form customer name?
+## Task: Generate SQL query from retrieved schema context for <user_query>tell me the product name, category, price and StockQuantity of products for which the orders were placed along with customer name who placed those orders? concate first name and last name to form customer name?</user_query>, Here are some important rules for writing query        
+    - Use the joins only and only if you think its required
+    - Use the CTE only if you think it is really required.
+    - If you are writing CTEs then include all the required columns.
+    - Use the only functions compatible with athena. Don't use STRING_AGG
+    - During join if column name are same please use alias ex llm.customer_id
+    - In Query please use the table name as database_name.table_name ex athena_db.customers
+    - It is also important to respect the type of columns.
+    - It is also important to use the distinct if there is possibility of cross join
+    - If a column is string, the value should be enclosed in quotes.
+    - For date columns comparing to string , please cast the string input.
+
+ 
+[2025-03-22 15:12:33][🤖 LLM CALL STARTED]: 2025-03-22 15:12:33.324650
+ 
+[2025-03-22 15:12:35][✅ LLM CALL COMPLETED]: 2025-03-22 15:12:35.995566
+
+
+# Agent: Athena SQL Generator for tell me the product name, category, price and StockQuantity of products for which the orders were placed along with customer name who placed those orders? concate first name and last name to form customer name?
+## Final Answer:
+SELECT DISTINCT
+    CONCAT(c.firstname, ' ', c.lastname) AS customer_name,
+    p.productname,
+    p.category,
+    p.price,
+    p.stockquantity
+FROM
+    athena_db.customers c
+JOIN
+    athena_db.orders o ON c.customerid = o.customerid
+JOIN
+    athena_db.order_items oi ON o.orderid = oi.orderid
+JOIN
+    athena_db.products p ON oi.productid = p.productid;
+
+
+ 
+[2025-03-22 15:12:35][✅ AGENT 'ATHENA SQL GENERATOR FOR TELL ME THE PRODUCT NAME, CATEGORY, PRICE AND STOCKQUANTITY OF PRODUCTS FOR WHICH THE ORDERS WERE PLACED ALONG WITH CUSTOMER NAME WHO PLACED THOSE ORDERS? CONCATE FIRST NAME AND LAST NAME TO FORM CUSTOMER NAME?
+' COMPLETED TASK]: 2025-03-22 15:12:35.998582
+ 
+[2025-03-22 15:12:35][✅ TASK COMPLETED: GENERATE SQL QUERY FROM RETRIEVED SCHEMA CONTEXT FOR <USER_QUERY>TELL ME THE PRODUCT NAME, CATEGORY, PRICE AND STOCKQUANTITY OF PRODUCTS FOR WHICH THE ORDERS WERE PLACED ALONG WITH CUSTOMER NAME WHO PLACED THOSE ORDERS? CONCATE FIRST NAME AND LAST NAME TO FORM CUSTOMER NAME?</USER_QUERY>, HERE ARE SOME IMPORTANT RULES FOR WRITING QUERY 
+    - USE THE JOINS ONLY AND ONLY IF YOU THINK ITS REQUIRED 
+    - USE THE CTE ONLY IF YOU THINK IT IS REALLY REQUIRED.
+    - IF YOU ARE WRITING CTES THEN INCLUDE ALL THE REQUIRED COLUMNS. 
+    - USE THE ONLY FUNCTIONS COMPATIBLE WITH ATHENA. DON'T USE STRING_AGG 
+    - DURING JOIN IF COLUMN NAME ARE SAME PLEASE USE ALIAS EX LLM.CUSTOMER_ID
+    - IN QUERY PLEASE USE THE TABLE NAME AS DATABASE_NAME.TABLE_NAME EX ATHENA_DB.CUSTOMERS
+    - IT IS ALSO IMPORTANT TO RESPECT THE TYPE OF COLUMNS. 
+    - IT IS ALSO IMPORTANT TO USE THE DISTINCT IF THERE IS POSSIBILITY OF CROSS JOIN
+    - IF A COLUMN IS STRING, THE VALUE SHOULD BE ENCLOSED IN QUOTES. 
+    - FOR DATE COLUMNS COMPARING TO STRING , PLEASE CAST THE STRING INPUT.
+]: 2025-03-22 15:12:35.999579
+ 
+[2025-03-22 15:12:36][📋 TASK STARTED: EXECUTE THE SQL QUERY AND RETURN THE RESULTS OR ERROR MESSAGE.
+]: 2025-03-22 15:12:36.013588
+ 
+[2025-03-22 15:12:36][🤖 AGENT 'ATHENA SQL EXECUTOR
+' STARTED TASK]: 2025-03-22 15:12:36.016584
+# Agent: Athena SQL Executor
+## Task: Execute the sql query and return the results or error message.
+
+ 
+[2025-03-22 15:12:36][🤖 LLM CALL STARTED]: 2025-03-22 15:12:36.018581
+ 
+[2025-03-22 15:12:38][✅ LLM CALL COMPLETED]: 2025-03-22 15:12:38.876283
+ 
+[2025-03-22 15:12:38][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:38.877539
+ 
+[2025-03-22 15:12:44][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:44.493689
+ 
+[2025-03-22 15:12:49][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:49.684507
+ 
+[2025-03-22 15:12:55][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:55.448450
+
+
+I encountered an error while trying to use the tool. This was the error: TYPE_MISMATCH: line 10:40: Cannot apply operator: varchar = integer.
+ Tool ExecuteSqlQueryTool accepts these inputs: Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results.
+
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SELECT DISTINCT \\n    CONCAT(c.firstname, ' ', c.lastname) AS customer_name, \\n    p.productname, \\n    p.category, \\n    p.price, \\n    p.stockquantity \\nFROM \\n    athena_db.customers c \\nJOIN \\n    athena_db.orders o ON c.customerid = o.customerid \\nJOIN \\n    athena_db.order_items oi ON o.orderid = oi.orderid \\nJOIN \\n    athena_db.products p ON oi.productid = p.productid;\"}"
+## Tool Output:
+
+I encountered an error while trying to use the tool. This was the error: TYPE_MISMATCH: line 10:40: Cannot apply operator: varchar = integer.
+ Tool ExecuteSqlQueryTool accepts these inputs: Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results..
+Moving on then. I MUST either use a tool (use one at time) OR give my best final answer not both at the same time. When responding, I must use the following format:
+
+```
+Thought: you should always think about what to do
+Action: the action to take, should be one of [ExecuteSqlQueryTool]
+Action Input: the input to the action, dictionary enclosed in curly braces
+Observation: the result of the action
+```
+This Thought/Action/Action Input/Result can repeat N times. Once I know the final answer, I must return the following format:
+
+```
+Thought: I now can give a great answer
+Final Answer: Your final answer must be the great and the most complete as possible, it must be outcome described     
+
+```
+ 
+[2025-03-22 15:12:55][🤖 LLM CALL STARTED]: 2025-03-22 15:12:55.463460
+ 
+[2025-03-22 15:12:58][✅ LLM CALL COMPLETED]: 2025-03-22 15:12:58.446493
+ 
+[2025-03-22 15:12:58][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:12:58.447497
+ 
+[2025-03-22 15:13:01][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:01.441070
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SHOW COLUMNS FROM athena_db.customers;\"}"
+## Tool Output:
+{'success': True, 'data': [['firstname           '], ['lastname            '], ['email               '], ['phonenumber         ']]}
+ 
+[2025-03-22 15:13:01][🤖 LLM CALL STARTED]: 2025-03-22 15:13:01.445629
+ 
+[2025-03-22 15:13:02][✅ LLM CALL COMPLETED]: 2025-03-22 15:13:02.988713
+ 
+[2025-03-22 15:13:02][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:02.990715
+ 
+[2025-03-22 15:13:06][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:06.932917
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SHOW COLUMNS FROM athena_db.orders;\"}"
+## Tool Output:
+{'success': True, 'data': [['customerid          '], ['orderdate           '], ['orderamount         '], ['orderstatus         ']]}
+ 
+[2025-03-22 15:13:06][🤖 LLM CALL STARTED]: 2025-03-22 15:13:06.935370
+ 
+[2025-03-22 15:13:08][✅ LLM CALL COMPLETED]: 2025-03-22 15:13:08.290075
+ 
+[2025-03-22 15:13:08][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:08.292079
+ 
+[2025-03-22 15:13:12][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:12.754157
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"DESCRIBE athena_db.customers;\"}"
+## Tool Output:
+{'success': True, 'data': [['firstname           \tstring              \tfrom deserializer   '], ['lastname           
+ \tstring              \tfrom deserializer   '], ['email               \tstring              \tfrom deserializer   '], ['phonenumber         \tstring              \tfrom deserializer   ']]}
+
+
+You ONLY have access to the following tools, and should NEVER make up tools that are not listed here:
+
+Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results.
+
+IMPORTANT: Use the following format in your response:
+
+```
+Thought: you should always think about what to do
+Action: the action to take, only one name of [ExecuteSqlQueryTool], just the name, exactly as it's written.
+Action Input: the input to the action, just a simple JSON object, enclosed in curly braces, using " to wrap keys and values.
+Observation: the result of the action
+```
+
+Once all necessary information is gathered, return the following format:
+
+```
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+```
+ 
+[2025-03-22 15:13:12][🤖 LLM CALL STARTED]: 2025-03-22 15:13:12.755471
+ 
+[2025-03-22 15:13:14][✅ LLM CALL COMPLETED]: 2025-03-22 15:13:14.515390
+ 
+[2025-03-22 15:13:14][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:14.516418
+ 
+[2025-03-22 15:13:19][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:19.139733
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"DESCRIBE athena_db.orders;\"}"
+## Tool Output:
+{'success': True, 'data': [['customerid          \tstring              \tfrom deserializer   '], ['orderdate          
+ \tstring              \tfrom deserializer   '], ['orderamount         \tstring              \tfrom deserializer   '], ['orderstatus         \tstring              \tfrom deserializer   ']]}
+ 
+[2025-03-22 15:13:19][🤖 LLM CALL STARTED]: 2025-03-22 15:13:19.140735
+ 
+[2025-03-22 15:13:21][✅ LLM CALL COMPLETED]: 2025-03-22 15:13:21.028178
+ 
+[2025-03-22 15:13:21][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:21.030079
+ 
+[2025-03-22 15:13:26][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:26.348547
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"DESCRIBE athena_db.order_items;\"}"
+## Tool Output:
+{'success': True, 'data': [['orderid             \tstring              \tfrom deserializer   '], ['productid          
+ \tstring              \tfrom deserializer   '], ['quantity            \tstring              \tfrom deserializer   '], ['unitprice           \tstring              \tfrom deserializer   ']]}
+ 
+[2025-03-22 15:13:26][🤖 LLM CALL STARTED]: 2025-03-22 15:13:26.350532
+ 
+[2025-03-22 15:13:28][✅ LLM CALL COMPLETED]: 2025-03-22 15:13:28.604393
+ 
+[2025-03-22 15:13:28][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:28.606385
+ 
+[2025-03-22 15:13:32][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:32.914078
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"DESCRIBE athena_db.products;\"}"
+## Tool Output:
+{'success': True, 'data': [['productname         \tstring              \tfrom deserializer   '], ['category           
+ \tstring              \tfrom deserializer   '], ['price               \tstring              \tfrom deserializer   '], ['stockquantity       \tstring              \tfrom deserializer   ']]}
+
+
+You ONLY have access to the following tools, and should NEVER make up tools that are not listed here:
+
+Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results.
+
+IMPORTANT: Use the following format in your response:
+
+```
+Thought: you should always think about what to do
+Action: the action to take, only one name of [ExecuteSqlQueryTool], just the name, exactly as it's written.
+Action Input: the input to the action, just a simple JSON object, enclosed in curly braces, using " to wrap keys and values.
+Observation: the result of the action
+```
+
+Once all necessary information is gathered, return the following format:
+
+```
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+```
+ 
+[2025-03-22 15:13:32][🤖 LLM CALL STARTED]: 2025-03-22 15:13:32.918075
+ 
+[2025-03-22 15:13:36][✅ LLM CALL COMPLETED]: 2025-03-22 15:13:36.599244
+ 
+[2025-03-22 15:13:36][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:36.601257
+ 
+[2025-03-22 15:13:42][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:42.493800
+ 
+[2025-03-22 15:13:48][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:48.316110
+ 
+[2025-03-22 15:13:53][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:53.855051
+
+
+I encountered an error while trying to use the tool. This was the error: TYPE_MISMATCH: line 10:40: Cannot apply operator: varchar = integer.
+ Tool ExecuteSqlQueryTool accepts these inputs: Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results.
+
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SELECT DISTINCT \\n    CONCAT(c.firstname, ' ', c.lastname) AS customer_name, \\n    p.productname, \\n    p.category, \\n    CAST(p.price AS double) AS price, \\n    CAST(p.stockquantity AS int) AS stockquantity \\nFROM \\n    athena_db.customers c \\nJOIN \\n    athena_db.orders o ON c.customerid = o.customerid \\nJOIN \\n    athena_db.order_items oi ON o.orderid = oi.orderid \\nJOIN \\n    athena_db.products p ON oi.productid = p.productid;\"}"      
+## Tool Output:
+
+I encountered an error while trying to use the tool. This was the error: TYPE_MISMATCH: line 10:40: Cannot apply operator: varchar = integer.
+ Tool ExecuteSqlQueryTool accepts these inputs: Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results..
+Moving on then. I MUST either use a tool (use one at time) OR give my best final answer not both at the same time. When responding, I must use the following format:
+
+```
+Thought: you should always think about what to do
+Action: the action to take, should be one of [ExecuteSqlQueryTool]
+Action Input: the input to the action, dictionary enclosed in curly braces
+Observation: the result of the action
+```
+This Thought/Action/Action Input/Result can repeat N times. Once I know the final answer, I must return the following format:
+
+```
+Thought: I now can give a great answer
+Final Answer: Your final answer must be the great and the most complete as possible, it must be outcome described     
+
+```
+ 
+[2025-03-22 15:13:53][🤖 LLM CALL STARTED]: 2025-03-22 15:13:53.868723
+ 
+[2025-03-22 15:13:55][✅ LLM CALL COMPLETED]: 2025-03-22 15:13:55.509679
+ 
+[2025-03-22 15:13:55][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:13:55.509679
+ 
+[2025-03-22 15:14:00][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:00.441839
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SHOW COLUMNS FROM athena_db.products;\"}"
+## Tool Output:
+{'success': True, 'data': [['productname         '], ['category            '], ['price               '], ['stockquantity       ']]}
+ 
+[2025-03-22 15:14:00][🤖 LLM CALL STARTED]: 2025-03-22 15:14:00.444833
+ 
+[2025-03-22 15:14:03][✅ LLM CALL COMPLETED]: 2025-03-22 15:14:03.520151
+ 
+[2025-03-22 15:14:03][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:03.522182
+ 
+[2025-03-22 15:14:09][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:09.416518
+ 
+[2025-03-22 15:14:15][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:15.398432
+ 
+[2025-03-22 15:14:22][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:22.364776
+
+
+I encountered an error while trying to use the tool. This was the error: TYPE_MISMATCH: line 10:40: Cannot apply operator: varchar = integer.
+ Tool ExecuteSqlQueryTool accepts these inputs: Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results.
+
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SELECT DISTINCT \\n    CONCAT(c.firstname, ' ', c.lastname) AS customer_name, \\n    p.productname, \\n    p.category, \\n    CAST(p.price AS double) AS price, \\n    CAST(p.stockquantity AS int) AS stockquantity \\nFROM \\n    athena_db.customers c \\nJOIN \\n    athena_db.orders o ON c.customerid = o.customerid \\nJOIN \\n    athena_db.order_items oi ON o.orderid = oi.orderid \\nJOIN \\n    athena_db.products p ON oi.productid = p.productid;\"}"      
+## Tool Output:
+
+I encountered an error while trying to use the tool. This was the error: TYPE_MISMATCH: line 10:40: Cannot apply operator: varchar = integer.
+ Tool ExecuteSqlQueryTool accepts these inputs: Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results..
+Moving on then. I MUST either use a tool (use one at time) OR give my best final answer not both at the same time. When responding, I must use the following format:
+
+```
+Thought: you should always think about what to do
+Action: the action to take, should be one of [ExecuteSqlQueryTool]
+Action Input: the input to the action, dictionary enclosed in curly braces
+Observation: the result of the action
+```
+This Thought/Action/Action Input/Result can repeat N times. Once I know the final answer, I must return the following format:
+
+```
+Thought: I now can give a great answer
+Final Answer: Your final answer must be the great and the most complete as possible, it must be outcome described     
+
+```
+ 
+[2025-03-22 15:14:22][🤖 LLM CALL STARTED]: 2025-03-22 15:14:22.388604
+ 
+[2025-03-22 15:14:27][✅ LLM CALL COMPLETED]: 2025-03-22 15:14:27.203933
+ 
+[2025-03-22 15:14:27][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:27.209087
+ 
+[2025-03-22 15:14:32][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:32.319237
+ 
+[2025-03-22 15:14:37][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:37.507804
+ 
+[2025-03-22 15:14:42][❌ TOOL USAGE ERROR: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:42.663862
+
+
+I encountered an error while trying to use the tool. This was the error: TYPE_MISMATCH: line 10:40: Cannot apply operator: varchar = integer.
+ Tool ExecuteSqlQueryTool accepts these inputs: Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results.
+
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SELECT DISTINCT \\n    CONCAT(c.firstname, ' ', c.lastname) AS customer_name, \\n    p.productname, \\n    p.category, \\n    p.price, \\n    p.stockquantity \\nFROM \\n    athena_db.customers c \\nJOIN \\n    athena_db.orders o ON c.customerid = o.customerid \\nJOIN \\n    athena_db.order_items oi ON o.orderid = oi.orderid \\nJOIN \\n    athena_db.products p ON oi.productid = p.productid;\"}"
+## Tool Output:
+
+I encountered an error while trying to use the tool. This was the error: TYPE_MISMATCH: line 10:40: Cannot apply operator: varchar = integer.
+ Tool ExecuteSqlQueryTool accepts these inputs: Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results..
+Moving on then. I MUST either use a tool (use one at time) OR give my best final answer not both at the same time. When responding, I must use the following format:
+
+```
+Thought: you should always think about what to do
+Action: the action to take, should be one of [ExecuteSqlQueryTool]
+Action Input: the input to the action, dictionary enclosed in curly braces
+Observation: the result of the action
+```
+This Thought/Action/Action Input/Result can repeat N times. Once I know the final answer, I must return the following format:
+
+```
+Thought: I now can give a great answer
+Final Answer: Your final answer must be the great and the most complete as possible, it must be outcome described     
+
+```
+ 
+[2025-03-22 15:14:42][🤖 LLM CALL STARTED]: 2025-03-22 15:14:42.678955
+ 
+[2025-03-22 15:14:44][✅ LLM CALL COMPLETED]: 2025-03-22 15:14:44.427310
+ 
+[2025-03-22 15:14:44][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:44.427310
+ 
+[2025-03-22 15:14:48][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:48.340562
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SELECT * FROM athena_db.customers LIMIT 5;\"}"
+## Tool Output:
+{'success': True, 'data': [['1', 'John', 'Doe', 'johndoe@example.com', '123-456-7890'], ['2', 'Jane', 'Smith', 'janesmith@example.com', '234-567-8901'], ['3', 'Jim', 'Brown', 'jimbrown@example.com', '345-678-9012'], ['4', 'Jack', 'Johnson', 'jackjohnson@example.com', '456-789-0123'], ['5', 'Jill', 'Williams', 'jillwilliams@example.com', '567-890-1234']]}
+ 
+[2025-03-22 15:14:48][🤖 LLM CALL STARTED]: 2025-03-22 15:14:48.345372
+ 
+[2025-03-22 15:14:50][✅ LLM CALL COMPLETED]: 2025-03-22 15:14:50.363656
+ 
+[2025-03-22 15:14:50][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:50.364633
+ 
+[2025-03-22 15:14:53][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:53.693787
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SELECT * FROM athena_db.orders LIMIT 5;\"}"
+## Tool Output:
+{'success': True, 'data': [['1001', '1', '2023-01-15', '150.5', 'Shipped'], ['1002', '2', '2023-02-20', '250.0', 'Processing'], ['1003', '1', '2023-03-10', '300.75', 'Delivered'], ['1004', '3', '2023-04-05', '75.25', 'Cancelled'], ['1005', '4', '2023-05-25', '500.0', 'Shipped']]}
+
+
+You ONLY have access to the following tools, and should NEVER make up tools that are not listed here:
+
+Tool Name: ExecuteSqlQueryTool
+Tool Arguments: {'query': {'description': None, 'type': 'str'}}
+Tool Description: Execute a SQL query and return the results.
+
+IMPORTANT: Use the following format in your response:
+
+```
+Thought: you should always think about what to do
+Action: the action to take, only one name of [ExecuteSqlQueryTool], just the name, exactly as it's written.
+Action Input: the input to the action, just a simple JSON object, enclosed in curly braces, using " to wrap keys and values.
+Observation: the result of the action
+```
+
+Once all necessary information is gathered, return the following format:
+
+```
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+```
+ 
+[2025-03-22 15:14:53][🤖 LLM CALL STARTED]: 2025-03-22 15:14:53.698821
+ 
+[2025-03-22 15:14:57][✅ LLM CALL COMPLETED]: 2025-03-22 15:14:57.940660
+ 
+[2025-03-22 15:14:57][🤖 TOOL USAGE STARTED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:14:57.942899
+ 
+[2025-03-22 15:15:01][✅ TOOL USAGE FINISHED: 'EXECUTESQLQUERYTOOL']: 2025-03-22 15:15:01.018151
+
+
+# Agent: Athena SQL Executor
+## Using tool: ExecuteSqlQueryTool
+## Tool Input:
+"{\"query\": \"SELECT DISTINCT \\n    CONCAT(c.firstname, ' ', c.lastname) AS customer_name, \\n    p.productname, \\n    p.category, \\n    p.price, \\n    p.stockquantity \\nFROM \\n    athena_db.customers c \\nJOIN \\n    athena_db.orders o ON CAST(c.customerid AS int) = CAST(o.customerid AS int) \\nJOIN \\n    athena_db.order_items oi ON CAST(o.orderid AS int) = CAST(oi.orderid AS int) \\nJOIN \\n    athena_db.products p ON CAST(oi.productid AS int) = CAST(p.productid AS int);\"}"
+## Tool Output:
+{'success': True, 'data': [['Jane Smith', 'Widget C', 'Category 1', '75.0', '150'], ['Jack Johnson', 'Widget C', 'Category 1', '75.0', '150'], ['Jim Brown', 'Widget E', 'Category 2', '125.0', '50'], ['Jack Johnson', 'Widget B', 'Category 2', '50.0', '200'], ['John Doe', 'Widget B', 'Category 2', '50.0', '200'], ['John Doe', 'Widget D', 'Category 3', '100.0', '75'], ['John Doe', 'Widget A', 'Category 1', '25.0', '100']]}
+ 
+[2025-03-22 15:15:01][🤖 LLM CALL STARTED]: 2025-03-22 15:15:01.021384
+ 
+[2025-03-22 15:15:08][✅ LLM CALL COMPLETED]: 2025-03-22 15:15:08.220765
+
+
+# Agent: Athena SQL Executor
+## Final Answer:
+[
+    ['Jane Smith', 'Widget C', 'Category 1', '75.0', '150'],
+    ['Jack Johnson', 'Widget C', 'Category 1', '75.0', '150'],
+    ['Jim Brown', 'Widget E', 'Category 2', '125.0', '50'],
+    ['Jack Johnson', 'Widget B', 'Category 2', '50.0', '200'],
+    ['John Doe', 'Widget B', 'Category 2', '50.0', '200'],
+    ['John Doe', 'Widget D', 'Category 3', '100.0', '75'],
+    ['John Doe', 'Widget A', 'Category 1', '25.0', '100']
+]
+
+
+ 
+[2025-03-22 15:15:08][✅ AGENT 'ATHENA SQL EXECUTOR
+' COMPLETED TASK]: 2025-03-22 15:15:08.225647
+ 
+[2025-03-22 15:15:08][✅ TASK COMPLETED: EXECUTE THE SQL QUERY AND RETURN THE RESULTS OR ERROR MESSAGE.
+]: 2025-03-22 15:15:08.227675
+ 
+[2025-03-22 15:15:08][✅ CREW 'CREW' COMPLETED, 9730E801-E52E-43DC-9C97-DC4AF293A713]: 2025-03-22 15:15:08.244968     
+
+(D:\AgenticAI\AgenticAIWorkflow\venv) C:\ai\text2sql\src\text2sql>

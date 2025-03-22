@@ -1,0 +1,85 @@
+# context_retrieval_task:
+#   description: >
+#     Retrieve schema from knowledge source for <user_query>{user_query}</user_query>. Provide the column names for Schema Details and table names as it is from knowledge source. Don't make up any table or column name. example if column name is customerid then provide the same. Don't convert it to customer_id
+#   expected_output: >
+#     actual column names and table names from knowledge source only
+#   agent: context_retriever
+#   knowledge: text_source
+
+context_retrieval_task:
+  description: >
+    - Execute exploratory schema queries ('SHOW TABLES' and 'DESCRIBE TABLE') on Athena based on <user_query>{user_query}</user_query>. Return only the exact table names and column names as provided by Athena. Do not modify or assume any table or column names. For instance, if the column name provided by Athena is 'customerid', return it exactly as 'customerid', not 'customer_id'.
+    - Use the following yaml to identify the join conditions:
+    
+    tables:
+      - name: customers
+        joining_condition:
+          table: orders
+          on: "customers.CustomerID = orders.CustomerID"
+        filters: []
+
+      - name: orders
+        joining_condition:
+          table: order_items
+          on: "orders.OrderID = order_items.OrderID"
+        filters: []
+
+      - name: products
+        joining_condition:
+          table: order_items
+          on: "products.ProductID = order_items.ProductID"
+        filters: []
+
+      - name: order_items
+        joining_condition:
+          table: orders
+          on: "order_items.OrderID = orders.OrderID"
+        filters: []
+
+      - revenue: "order_items.unit_price * order_items.quantity"
+
+      - customername: "customers.firstname + ' ' + customers.lastname"
+  expected_output: >
+    Verified and exact table names and column names retrieved directly from Athena, along with validated join conditions.
+  agent: context_retriever
+
+
+sql_generation_task:
+  description: >
+            Generate SQL query from retrieved schema context for <user_query>{user_query}</user_query>, Here are some important rules for writing query 
+                - Use the joins only and only if you think its required 
+                - Use the CTE only if you think it is really required.
+                - If you are writing CTEs then include all the required columns. 
+                - Use the only functions compatible with athena. Don't use STRING_AGG 
+                - During join if column name are same please use alias ex llm.customer_id
+                - In Query please use the table name as database_name.table_name ex athena_db.customers
+                - It is also important to respect the type of columns. 
+                - It is also important to use the distinct if there is possibility of cross join
+                - If a column is string, the value should be enclosed in quotes. 
+                - For date columns comparing to string , please cast the string input.
+  expected_output: >
+    sql query without preamble
+    Formatted as markdown without '```'
+  agent: sql_generator
+
+sql_execution_task:
+  description: >
+    Execute the sql query and return the results or error message.
+  expected_output: >
+    Results of the SQL query or error message
+  agent: sql_executor
+
+manager_task:
+  description: >
+    If sql execution is success then summarize the results and return to the user.
+  expected_output: >
+    Summarized results
+  agent: manager
+
+# sql_fixing_task:
+#   description: >
+#     If there is any exception in the query execution, Ask sql_generator to regenerate the query with the error message. Try to fix query only 5 times. If it still fails, return the user friendly error message.
+#   expected_output: >
+#     SQL query and error message
+#   agent: sql_fixer
+

@@ -1,0 +1,173 @@
+# Customers, Orders, Order Items & Products Table Knowledge Base
+
+## Customers Table
+
+### Table Overview
+This table contains customer information and is stored in Amazon S3. It is queried using Amazon Athena and follows the OpenCSVSerde format.
+
+### Schema Details
+- **customerid (STRING):** Unique customer identifier. Primary key.
+- **firstname (STRING):** Customer's first name.
+- **lastname (STRING):** Customer's last name.
+- **email (STRING):** Customer's email address. Can be used for filtering and grouping.
+- **phonenumber (STRING):** Customer's contact number. May contain country codes.
+
+### Storage & Querying Details
+- **Table Name:** `customers`
+- **Format:** CSV (OpenCSVSerde)
+- **Storage Location:** `s3://athena-datasource-cg/customers1`
+- **Delimiter:** `,`
+- **Quote Character:** `"`
+- **Escape Character:** `\`
+- **Header Handling:** Skips first row
+
+### SQL Query Generation Guidelines for GenAI Agent
+- Use `SELECT` statements for retrieving customer details.
+- Use `WHERE` filters on `customerid`, `email`, or `phonenumber` for targeted queries.
+- Use `LIKE` for partial matches in string fields.
+- Use `COUNT()`, `GROUP BY`, and `ORDER BY` for aggregations and sorting.
+- Ensure that `email` filtering considers different domains and variations.
+- Avoid NULL values handling as all fields are expected to be populated.
+
+### Example Queries
+
+#### Retrieve customer details by email
+```sql
+SELECT customerid, firstname, lastname FROM customers WHERE email = 'john.doe@example.com';
+```
+
+#### Get count of customers with Gmail accounts
+```sql
+SELECT COUNT(*) FROM customers WHERE email LIKE '%@gmail.com';
+```
+
+#### List customers sorted by last name
+```sql
+SELECT customerid, firstname, lastname FROM customers ORDER BY lastname ASC;
+```
+
+## Orders Table
+
+### Table Overview
+This table contains details of customer orders and is stored in Amazon S3. It is queried using Amazon Athena and follows the OpenCSVSerde format.
+
+### Schema Details
+- **orderid (STRING):** Unique identifier for each order. Primary key.
+- **customerid (STRING):** Identifier linking the order to a customer.
+- **orderdate (STRING):** Date when the order was placed.
+- **orderamount (STRING):** Total amount for the order.
+- **orderstatus (STRING):** Current status of the order (e.g., Pending, Shipped, Delivered).
+
+### Storage & Querying Details
+- **Table Name:** `orders`
+- **Format:** CSV (OpenCSVSerde)
+- **Storage Location:** `s3://athena-datasource-cg/orders`
+- **Delimiter:** `,`
+- **Quote Character:** `"`
+- **Escape Character:** `\`
+- **Header Handling:** Skips first row
+
+### SQL Query Generation Guidelines for GenAI Agent
+- Use `SELECT` statements for retrieving order details.
+- Use `WHERE` filters on `orderid`, `customerid`, or `orderstatus` for targeted queries.
+- Use `SUM(orderamount)` for total sales calculations.
+- Use `JOIN` with `customers` to fetch customer details.
+- Use `JOIN` with `order_items` to get order breakdowns.
+
+### Example Queries
+
+#### Retrieve all orders for a specific customer
+```sql
+SELECT orderid, orderdate, orderamount, orderstatus FROM orders WHERE customerid = 'CUST12345';
+```
+
+#### Calculate total sales revenue
+```sql
+SELECT SUM(orderamount) AS total_sales FROM orders;
+```
+
+#### Get orders that are pending
+```sql
+SELECT orderid, customerid, orderdate FROM orders WHERE orderstatus = 'Pending';
+```
+
+## Order Items Table
+
+### Table Overview
+This table contains order item details related to customer orders and is stored in Amazon S3. It is queried using Amazon Athena and follows the OpenCSVSerde format.
+
+### Schema Details
+- **orderitemid (STRING):** Unique identifier for each order item.
+- **orderid (STRING):** Identifier linking the item to an order.
+- **productid (STRING):** Identifier for the product in the order.
+- **quantity (STRING):** Number of units purchased for the product.
+- **unitprice (STRING):** Price per unit of the product.
+
+### Storage & Querying Details
+- **Table Name:** `order_items`
+- **Format:** CSV (OpenCSVSerde)
+- **Storage Location:** `s3://athena-datasource-cg/order_items`
+- **Delimiter:** `,`
+- **Quote Character:** `"`
+- **Escape Character:** `\`
+- **Header Handling:** Skips first row
+
+### SQL Query Generation Guidelines for GenAI Agent
+- Use `SELECT` statements for retrieving order item details.
+- Use `WHERE` filters on `orderid`, `productid`, or `orderitemid` for specific queries.
+- Use `SUM(quantity)` to compute total items per order.
+- Use `AVG(unitprice)` to calculate the average product price.
+- Use `JOIN` with `orders` or `customers` tables for enriched queries.
+
+### Example Queries
+
+#### Retrieve all items in a specific order
+```sql
+SELECT orderitemid, productid, quantity, unitprice FROM order_items WHERE orderid = 'ORD12345';
+```
+
+## Products Table
+
+### Table Overview
+This table contains product information and is stored in Amazon S3. It is queried using Amazon Athena and follows the OpenCSVSerde format.
+
+### Schema Details
+- **productid (STRING):** Unique identifier for each product. Primary key.
+- **productname (STRING):** Name of the product.
+- **category (STRING):** Category under which the product is classified.
+- **price (STRING):** Price of the product.
+- **stockquantity (STRING):** Available stock quantity for the product.
+
+### Storage & Querying Details
+- **Table Name:** `products`
+- **Format:** CSV (OpenCSVSerde)
+- **Storage Location:** `s3://athena-datasource-cg/products`
+- **Delimiter:** `,`
+- **Quote Character:** `"`
+- **Escape Character:** `\`
+- **Header Handling:** Skips first row
+
+### SQL Query Generation Guidelines for GenAI Agent
+- Use `SELECT` statements for retrieving product details.
+- Use `WHERE` filters on `productid`, `category`, or `price` for specific queries.
+- Use `AVG(price)` to calculate average product prices.
+- Use `SUM(stockquantity)` to check total available stock.
+- Use `JOIN` with `order_items` to analyze product sales.
+
+### Example Queries
+
+#### Retrieve product details by category
+```sql
+SELECT productid, productname, price FROM products WHERE category = 'Electronics';
+```
+
+#### Calculate total stock available
+```sql
+SELECT SUM(stockquantity) AS total_stock FROM products;
+```
+
+## Additional Notes
+- Ensure appropriate IAM permissions for S3 and Athena access.
+- Data updates require refreshing the external table in Athena.
+- Queries should be optimized for performance by filtering on indexed fields like `customerid`, `email`, `orderid`, and `productid` where possible.
+
